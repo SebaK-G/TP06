@@ -1,5 +1,5 @@
 namespace TP06.Models;
-public class Sala{
+public class Salas{
     public int Id { get; set; }
     public int IdPartida { get; set; }
     public int NumeroSala { get; set; }

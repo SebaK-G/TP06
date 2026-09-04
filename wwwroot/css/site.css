@@ -158,7 +158,15 @@ body {
   font-family: "Arial Black", Impact, sans-serif;
   font-size: clamp(2.5rem, 7vw, 5rem);
   line-height: 1;
+  text-align: center;
   text-transform: uppercase;
+}
+
+.game-menu .tutorial-page__title {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 
 .tutorial-page__intro {
@@ -166,6 +174,57 @@ body {
   color: #c8d0d0;
   font-family: "Trebuchet MS", sans-serif;
   font-size: 1.05rem;
+}
+
+.game-form {
+  width: min(100%, 440px);
+  margin: 0 auto;
+  text-align: left;
+}
+
+.game-form label {
+  display: block;
+  margin-bottom: .5rem;
+  color: #eab758;
+  font-family: "Trebuchet MS", sans-serif;
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.game-form input {
+  width: 100%;
+  padding: .85rem 1rem;
+  border: 1px solid #39454a;
+  background: #18242b;
+  color: #fffaf0;
+  font-family: "Trebuchet MS", sans-serif;
+  font-size: 1rem;
+}
+
+.game-form input:focus {
+  outline: 2px solid #eab758;
+  outline-offset: 2px;
+}
+
+.game-form .game-button {
+  margin-top: .75rem;
+}
+
+.game-form__error,
+.game-form__success {
+  margin: .75rem 0;
+  font-family: "Trebuchet MS", sans-serif;
+  font-size: .9rem;
+}
+
+.game-form__error {
+  color: #f07160;
+}
+
+.game-form__success {
+  color: #eab758;
 }
 
 .tutorial-steps {

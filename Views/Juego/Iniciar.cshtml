@@ -1,0 +1,23 @@
+@{
+    ViewData["Title"] = "Identificación";
+}
+
+<div class="game-menu">
+    <div class="game-menu__content">
+        <p class="game-menu__eyebrow">Acceso a la misión</p>
+        <h1 class="tutorial-page__title">Identifícate</h1>
+        <p class="tutorial-page__intro">Ingresá tu nombre para comenzar la partida.</p>
+
+        @if (ViewBag.Error != null)
+        {
+            <p class="game-form__error">@ViewBag.Error</p>
+        }
+
+        <form id="formularioNombre" class="game-form" action='@Url.Action("Iniciar", "Juego")' method="post">
+            <label for="nombre">Nombre</label>
+            <input id="nombre" name="nombre" value="@ViewBag.NombreIngresado" maxlength="40" required />
+            <p id="errorNombre" class="game-form__error"></p>
+            <button type="submit" class="game-button game-button--primary">Entrar <span aria-hidden="true">→</span></button>
+        </form>
+    </div>
+</div>

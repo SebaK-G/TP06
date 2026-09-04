@@ -11,17 +11,50 @@ public class JuegoController : Controller
     public IActionResult Index(){
         return View();
     }
-    public IActionResult Iniciar(){
-        return View();
-    }
     public IActionResult Tutorial(){
         return View();
     }
     public IActionResult Integrantes(){
         return View();
     }
+    public IActionResult Iniciar(){
+        return View();
+    }
+    public IActionResult Sala1(){
+        return View();
+    }
 
+    [HttpPost]
+    public IActionResult Iniciar(string nombre){
+        if (nombre == null){
+            nombre = "";
+        }
+        bool nombreValido = nombre.Length >= 2 && nombre.Length <= 40;
+        bool tieneLetras = false;
 
+        foreach (char letra in nombre){
+            if (char.IsLetter(letra))
+            {
+                tieneLetras = true;
+            }
+            else if (letra != ' ')
+            {
+                nombreValido = false;
+            }
+        }
+        if (!tieneLetras){
+            nombreValido = false;
+        }
+        if (!nombreValido){
+            ViewBag.Error = "Ingresá un nombre válido usando solo letras.";
+            ViewBag.NombreIngresado = nombre;
+            return View();
+        }
+
+        bd.CrearPartida(new Partidas { NombreParticipante = nombre });
+        HttpContext.Session.SetString("NombreJugador", nombre);
+        return RedirectToAction("Sala1");
+    }
 
 
 }
