@@ -1,8 +1,21 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Menu";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="game-menu">
+    <div class="game-menu__content">
+        <p class="game-menu__eyebrow">Misión final · 4 salas · 1 destino</p>
+        <h1>Todo o nada</h1>
+        <p class="game-menu__lead">¿Podrás salvar al universo?</p>
+        <div class="game-menu__copy">
+            <p>Entrá a una sala de escape inspirada en <em>Avengers: Infinity War</em> y <em>Endgame</em>.</p>
+            <p>Superá los desafíos de cada sala antes de que se acabe el tiempo.</p>
+        </div>
+        <p class="game-menu__question">¿Estás preparado para el desafío?</p>
+        <div class="game-menu__actions">
+            <a class="game-button game-button--primary" href="/Juego/Iniciar">Comenzar <span aria-hidden="true">→</span></a>
+            <a class="game-button game-button--secondary" href="/Juego/Tutorial">Ver tutorial <span aria-hidden="true">↗</span></a>
+            <a class="game-button game-button--quiet" href="/Juego/Integrantes">Integrantes</a>
+        </div>
+    </div>
 </div>

@@ -18,7 +18,137 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+  background: #101820;
+  color: #f7f2e8;
+  font-family: "Palatino Linotype", Palatino, Georgia, serif;
+}
+
+.game-menu {
+  min-height: calc(100vh - 190px);
+  display: grid;
+  place-items: center;
+  padding: 4rem 1.25rem;
+  background: #101820;
+}
+
+.game-menu__content {
+  width: min(100%, 760px);
+  text-align: center;
+}
+
+.game-menu__eyebrow {
+  margin-bottom: 1.4rem;
+  color: #eab758;
+  font-family: "Trebuchet MS", sans-serif;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.game-menu h1 {
+  margin: 0;
+  color: #fffaf0;
+  font-family: "Arial Black", Impact, sans-serif;
+  font-size: clamp(3.2rem, 10vw, 7rem);
+  line-height: .9;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+}
+
+.game-menu__lead {
+  margin: 1.5rem 0 .9rem;
+  color: #e65e4f;
+  font-size: clamp(1.35rem, 3vw, 2rem);
+  font-weight: 700;
+}
+
+.game-menu__copy {
+  max-width: 570px;
+  margin: 0 auto;
+  color: #c8d0d0;
+  font-family: "Trebuchet MS", sans-serif;
+  line-height: 1.7;
+}
+
+.game-menu__copy p {
+  margin: .25rem 0;
+}
+
+.game-menu__question {
+  margin: 2rem 0 1.5rem;
+  color: #fffaf0;
+  font-size: 1.2rem;
+  font-style: italic;
+}
+
+.game-menu__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .8rem;
+}
+
+.game-button {
+  min-width: 160px;
+  padding: .85rem 1.35rem;
+  border: 1px solid transparent;
+  font-family: "Trebuchet MS", sans-serif;
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.game-button span {
+  margin-left: .5rem;
+  font-size: 1rem;
+}
+
+.game-button--primary {
+  background: #e65e4f;
+  color: #fffaf0;
+}
+
+.game-button--primary:hover {
+  background: #f07160;
+  color: #fffaf0;
+}
+
+.game-button--secondary {
+  border-color: #eab758;
+  color: #eab758;
+}
+
+.game-button--secondary:hover {
+  background: #eab758;
+  color: #101820;
+}
+
+.game-button--quiet {
+  min-width: auto;
+  color: #c8d0d0;
+}
+
+.game-button--quiet:hover {
+  color: #fffaf0;
+}
+
+@media (max-width: 575px) {
+  .game-menu {
+    min-height: calc(100vh - 150px);
+    padding: 3rem 1rem;
+  }
+
+  .game-menu__actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .game-button {
+    width: 100%;
+  }
 }
 
 .form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {

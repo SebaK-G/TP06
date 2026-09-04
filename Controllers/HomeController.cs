@@ -11,7 +11,7 @@ public class HomeController : Controller
         _logger = logger;
     }
     public IActionResult Index(){
-        return RedirectToAction("Index", "Sala");
+        return RedirectToAction("Index", "Juego");
     }
     public IActionResult Privacy(){
         return View();

@@ -6,22 +6,21 @@ namespace TP06.Controllers;
 
 public class JuegoController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
-    public JuegoController(ILogger<HomeController> logger){
-        _logger = logger;
-    }
-    public IActionResult Privacy(){
-        return View();
-    }
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error(){
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-    }
+    private BD bd = new BD();
 
-    
     public IActionResult Index(){
         return View();
     }
+    public IActionResult Iniciar(){
+        return View();
+    }
+    public IActionResult Tutorial(){
+        return View();
+    }
+    public IActionResult Integrantes(){
+        return View();
+    }
+
 
 
 
