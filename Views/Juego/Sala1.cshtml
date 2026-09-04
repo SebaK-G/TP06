@@ -1,0 +1,22 @@
+@{
+    ViewData["Title"] = "Sala 1 - Wakanda";
+}
+
+<div class="room-page">
+    <div class="room-page__content">
+        <p class="game-menu__eyebrow">Sala 01 · Wakanda</p>
+        <h1 class="room-page__title">Prepararse para Thanos</h1>
+        <p class="room-page__text">Despertás en Wakanda. Hablá con Shuri, Wanda y T'Challa para obtener los números que forman el código.</p>
+
+        <form class="game-form room-form" method="post" action="/Juego/SubmitSala">
+            <label for="respuesta">Código de 4 números</label>
+            <input id="respuesta" name="respuesta" type="text" maxlength="4" inputmode="numeric" pattern="[0-9]{4}" required />
+            <button class="game-button game-button--primary" type="submit">Enviar <span aria-hidden="true">→</span></button>
+        </form>
+
+        @if (TempData["Error"] != null)
+        {
+            <p class="game-form__error">@TempData["Error"]</p>
+        }
+    </div>
+</div>

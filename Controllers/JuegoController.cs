@@ -25,6 +25,25 @@ public class JuegoController : Controller
     }
 
     [HttpPost]
+    public IActionResult SubmitSala(string respuesta){ /*Revisar*/
+        if (respuesta == "1234"){
+            return RedirectToAction("Sala2");
+        }
+        TempData["Error"] = "El código no es correcto. Intentá nuevamente.";
+        return RedirectToAction("Sala1");
+    }
+
+    public IActionResult Sala2(){
+        return View();
+    }
+    public IActionResult Sala3(){
+        return View();
+    }
+    public IActionResult Sala4(){
+        return View();
+    }
+
+    [HttpPost]
     public IActionResult Iniciar(string nombre){
         if (nombre == null){
             nombre = "";

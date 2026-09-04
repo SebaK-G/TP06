@@ -1,0 +1,52 @@
+@{
+    ViewData["Title"] = "Sala 2 - Ahorcado";
+    string palabraOculta = ViewBag.PalabraOculta as string ?? string.Empty;
+    int intentosRestantes = ViewBag.Intentos is int intentos ? intentos : 10;
+    string letrasUsadas = ViewBag.LetrasUsadas as string ?? string.Empty;
+    string mensaje = TempData["Sala2Mensaje"] as string ?? string.Empty;
+    string error = TempData["Error"] as string ?? string.Empty;
+    bool sinIntentos = intentosRestantes <= 0;
+}
+
+<h1>Ahorcado</h1>
+<p>¡En este ahorcado vas a tener que adivinar la palabra con un máximo de 10 intentos!</p>
+
+<section>
+    <div class="div1">
+        <h2 id="palabraOculta">@palabraOculta</h2>
+    </div>
+
+    <h4>Intentos Restantes:</h4>
+    <h4 class="intent" id="intentos">@intentosRestantes</h4>
+
+    <h4 id="mensaje">@mensaje</h4>
+
+    @if (!string.IsNullOrWhiteSpace(error))
+    {
+        <div class="alert alert-warning">@error</div>
+    }
+
+    @if (sinIntentos)
+    {
+        <div class="text-center mt-3">
+            <a class="btn btn-primary" href="/Home/ReiniciarSala2">Volver a intentar</a>
+        </div>
+    }
+    else
+    {
+        <p>Ingresa la letra:</p>
+
+        <form method="post" action="/Home/SubmitSala">
+            <input type="hidden" name="salaId" value="2" />
+            <input type="text" id="respuesta" name="respuesta" maxlength="1" placeholder="Ingrese la letra" style="display: block; margin: 0 auto; width: 250px; text-align: center;" />
+            <button type="submit" id="boton">Arriesgar letra</button>
+        </form>
+    }
+
+    <p><strong>Letras usadas:</strong> @(string.IsNullOrWhiteSpace(letrasUsadas) ? "Ninguna" : letrasUsadas)</p>
+</section>
+
+<div class="text-center mt-3">
+    <a class="btn btn-link" href="#" onclick="fetch('/Home/Hint?salaId=2').then(r=>r.text()).then(t=>{document.getElementById('hint').innerHTML=t})">Pista</a>
+    <div id="hint" class="mt-3"></div>
+</div>

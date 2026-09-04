@@ -1,0 +1,64 @@
+@{
+    ViewData["Title"] = "Sala 3 - Viaje en el tiempo";
+}
+
+<h2>Cinco años después — Viaje en el tiempo</h2>
+<p>Contesta las preguntas para formar un código de 4 dígitos.</p>
+
+<form method="post" action="/Home/SubmitSala">
+    <input type="hidden" name="salaId" value="3" />
+    <div class="mb-3">
+        <label>1) ¿Quién es el hermano de Thor?</label>
+        <select class="form-control" name="q1">
+            <option value="4">Loki</option>
+            <option value="2">Vision</option>
+            <option value="7">Bucky</option>
+            <option value="1">Scott</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label>2) ¿Quién creó a Ultron?</label>
+        <select class="form-control" name="q2">
+            <option value="7">Tony</option>
+            <option value="3">Bruce</option>
+            <option value="2">Thanos</option>
+            <option value="9">Nick</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label>3) ¿Quién fue compañero de Capitán América?</label>
+        <select class="form-control" name="q3">
+            <option value="2">Vision</option>
+            <option value="5">Sam</option>
+            <option value="4">Loki</option>
+            <option value="7">Hawkeye</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label>4) ¿Qué héroe piloteó el traje hasta Titan?</label>
+        <select class="form-control" name="q4">
+            <option value="9">Tony</option>
+            <option value="2">Peter</option>
+            <option value="8">Drax</option>
+            <option value="1">Groot</option>
+        </select>
+    </div>
+    <input type="hidden" name="extra" id="code" />
+    <input type="hidden" name="respuesta" value="quiz" />
+    <button class="btn btn-success" type="button" onclick="genCode()">Generar código y enviar</button>
+    <a class="btn btn-link" href="#" onclick="fetch('/Home/Hint?salaId=3').then(r=>r.text()).then(t=>{document.getElementById('hint').innerHTML=t})">Pista</a>
+    <div id="hint" class="mt-3"></div>
+    <button type="submit" class="d-none" id="submitBtn"></button>
+</form>
+
+<script>
+function genCode(){
+    const q1 = document.querySelector('[name=q1]').value;
+    const q2 = document.querySelector('[name=q2]').value;
+    const q3 = document.querySelector('[name=q3]').value;
+    const q4 = document.querySelector('[name=q4]').value;
+    const code = q1+q2+q3+q4;
+    document.getElementById('code').value = code;
+    document.getElementById('submitBtn').click();
+}
+</script>
