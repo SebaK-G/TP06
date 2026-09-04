@@ -1,0 +1,36 @@
+@{
+    ViewData["Title"] = "Tutorial";
+}
+
+<div class="tutorial-page">
+    <p class="game-menu__eyebrow">Protocolo de misión</p>
+    <h1 class="tutorial-page__title">Tutorial / Historia</h1>
+    <p class="tutorial-page__intro">Seguí la historia, resolvé cada desafío y salvá al universo.</p>
+
+    <div class="tutorial-steps">
+        <article class="tutorial-step">
+            <p class="tutorial-step__number">01</p>
+            <h2>Wakanda</h2>
+            <p>Obtené un código de 4 dígitos hablando con los NPCs.</p>
+        </article>
+        <article class="tutorial-step">
+            <p class="tutorial-step__number">02</p>
+            <h2>La batalla</h2>
+            <p>Protegé a Visión. La historia continúa aunque falles.</p>
+        </article>
+        <article class="tutorial-step">
+            <p class="tutorial-step__number">03</p>
+            <h2>Viaje temporal</h2>
+            <p>Completá el cuestionario para descubrir el código.</p>
+        </article>
+        <article class="tutorial-step">
+            <p class="tutorial-step__number">04</p>
+            <h2>Las gemas</h2>
+            <p>Ordená las 6 gemas y completá el guantelete.</p>
+        </article>
+    </div>
+
+    <div class="tutorial-page__actions">
+        <a class="game-button game-button--secondary" asp-controller="Juego" asp-action="Index">Volver al inicio <span aria-hidden="true">←</span></a>
+    </div>
+</div>

@@ -82,6 +82,135 @@ body {
   font-style: italic;
 }
 
+.team-page {
+  min-height: calc(100vh - 100px);
+  padding: 4rem 1.25rem;
+  text-align: center;
+}
+
+.team-page__title {
+  margin: 0;
+  color: #fffaf0;
+  font-family: "Arial Black", Impact, sans-serif;
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.team-page__intro {
+  margin: 1rem auto 3rem;
+  color: #c8d0d0;
+  font-family: "Trebuchet MS", sans-serif;
+  font-size: 1.05rem;
+}
+
+.team-page__members {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+  width: min(100%, 900px);
+  margin: 0 auto;
+}
+
+.team-page__actions {
+  margin-top: 2.5rem;
+}
+
+.team-member {
+  padding: 1.5rem 1rem 1.25rem;
+  border: 1px solid #39454a;
+  background: #18242b;
+}
+
+.team-member img {
+  width: min(100%, 220px);
+  aspect-ratio: 1;
+  object-fit: cover;
+  border: 3px solid #eab758;
+}
+
+.team-member__number {
+  margin: 1rem 0 .35rem;
+  color: #e65e4f;
+  font-family: "Trebuchet MS", sans-serif;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .15em;
+}
+
+.team-member h2 {
+  margin: 1.5rem 0 0;
+  color: #fffaf0;
+  font-family: "Trebuchet MS", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.tutorial-page {
+  min-height: calc(100vh - 100px);
+  padding: 4rem 1.25rem;
+  text-align: center;
+}
+
+.tutorial-page__title {
+  margin: 0;
+  color: #fffaf0;
+  font-family: "Arial Black", Impact, sans-serif;
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.tutorial-page__intro {
+  margin: 1rem auto 3rem;
+  color: #c8d0d0;
+  font-family: "Trebuchet MS", sans-serif;
+  font-size: 1.05rem;
+}
+
+.tutorial-steps {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  width: min(100%, 820px);
+  margin: 0 auto;
+  text-align: left;
+}
+
+.tutorial-step {
+  min-height: 155px;
+  padding: 1.35rem 1.5rem;
+  border-left: 3px solid #eab758;
+  background: #18242b;
+}
+
+.tutorial-step__number {
+  margin: 0 0 .6rem;
+  color: #e65e4f;
+  font-family: "Trebuchet MS", sans-serif;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .15em;
+}
+
+.tutorial-step h2 {
+  margin: 0 0 .55rem;
+  color: #fffaf0;
+  font-family: "Trebuchet MS", sans-serif;
+  font-size: 1.15rem;
+}
+
+.tutorial-step p:last-child {
+  margin: 0;
+  color: #c8d0d0;
+  font-family: "Trebuchet MS", sans-serif;
+  line-height: 1.5;
+}
+
+.tutorial-page__actions {
+  margin-top: 2.5rem;
+}
+
 .game-menu__actions {
   display: flex;
   flex-wrap: wrap;
@@ -148,6 +277,24 @@ body {
 
   .game-button {
     width: 100%;
+  }
+
+  .team-page {
+    padding: 3rem 1rem;
+  }
+
+  .team-page__members {
+    grid-template-columns: 1fr;
+    max-width: 320px;
+  }
+
+  .tutorial-page {
+    padding: 3rem 1rem;
+  }
+
+  .tutorial-steps {
+    grid-template-columns: 1fr;
+    max-width: 420px;
   }
 }
 

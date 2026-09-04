@@ -1,0 +1,27 @@
+@{
+    ViewData["Title"] = "Integrantes";
+}
+
+<div class="team-page">
+    <p class="game-menu__eyebrow">Integrantes del equipo</p>
+    <h1 class="team-page__title">Los integrantes</h1>
+    <p class="team-page__intro">Tres personas detrás de esta sala de escape</p>
+
+    <div class="team-page__members">
+        <article class="team-member">
+            <img src="~/Imagenes/Facundo.png" alt="Foto de Facundo Lowenstern" />
+            <h2>Facundo Lowenstern</h2>
+        </article>
+        <article class="team-member">
+            <img src="~/Imagenes/Sebastian.png" alt="Foto de Sebastian Ko" />
+            <h2>Sebastian Ko</h2>
+        </article>
+        <article class="team-member">
+            <img src="~/Imagenes/Matias.png" alt="Foto de Matias Fraiman" />
+            <h2>Matias Fraiman</h2>
+        </article>
+    </div>
+    <div class="team-page__actions">
+        <a class="game-button game-button--secondary" asp-controller="Juego" asp-action="Index">Volver al inicio <span aria-hidden="true">←</span></a>
+    </div>
+</div>
