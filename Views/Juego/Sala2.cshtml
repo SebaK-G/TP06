@@ -8,45 +8,47 @@
     bool sinIntentos = intentosRestantes <= 0;
 }
 
-<h1>Ahorcado</h1>
-<p>¡En este ahorcado vas a tener que adivinar la palabra con un máximo de 10 intentos!</p>
+<div class="room-page">
+    <div class="room-page__content">
+        <p class="game-menu__eyebrow">Sala 02 · Ahorcado</p>
+        <h1 class="room-page__title">Ahorcado</h1>
+        <p class="room-page__text">¡Tenés un máximo de 10 intentos para descubrir la palabra oculta!</p>
 
-<section>
-    <div class="div1">
-        <h2 id="palabraOculta">@palabraOculta</h2>
-    </div>
+        <div class="game-form room-form">
+            <div class="text-center mb-3">
+                <h2 id="palabraOculta" class="room-page__title" style="font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem;">@palabraOculta</h2>
+            </div>
 
-    <h4>Intentos Restantes:</h4>
-    <h4 class="intent" id="intentos">@intentosRestantes</h4>
+            <p class="game-menu__copy"><strong>Intentos restantes:</strong> <span id="intentos">@intentosRestantes</span></p>
+            <p class="game-menu__copy" id="mensaje">@mensaje</p>
 
-    <h4 id="mensaje">@mensaje</h4>
+            @if (!string.IsNullOrWhiteSpace(error))
+            {
+                <p class="game-form__error">@error</p>
+            }
 
-    @if (!string.IsNullOrWhiteSpace(error))
-    {
-        <div class="alert alert-warning">@error</div>
-    }
+            @if (sinIntentos)
+            {
+                <div class="game-menu__actions">
+                    <a class="game-button game-button--primary" href="/Home/ReiniciarSala2">Volver a intentar</a>
+                </div>
+            }
+            else
+            {
+                <form method="post" action="/Home/SubmitSala" class="game-form room-form">
+                    <input type="hidden" name="salaId" value="2" />
+                    <label for="respuesta">Letra</label>
+                    <input type="text" id="respuesta" name="respuesta" maxlength="1" placeholder="Ingrese la letra" />
+                    <button type="submit" id="boton" class="game-button game-button--primary">Arriesgar letra</button>
+                </form>
+            }
 
-    @if (sinIntentos)
-    {
-        <div class="text-center mt-3">
-            <a class="btn btn-primary" href="/Home/ReiniciarSala2">Volver a intentar</a>
+            <p class="game-menu__copy"><strong>Letras usadas:</strong> @(string.IsNullOrWhiteSpace(letrasUsadas) ? "Ninguna" : letrasUsadas)</p>
+
+            <div class="game-menu__actions">
+                <a class="game-button game-button--secondary" href="#" onclick="fetch('/Home/Hint?salaId=2').then(r=>r.text()).then(t=>{document.getElementById('hint').innerHTML=t})">Pista</a>
+            </div>
+            <div id="hint" class="mt-3"></div>
         </div>
-    }
-    else
-    {
-        <p>Ingresa la letra:</p>
-
-        <form method="post" action="/Home/SubmitSala">
-            <input type="hidden" name="salaId" value="2" />
-            <input type="text" id="respuesta" name="respuesta" maxlength="1" placeholder="Ingrese la letra" style="display: block; margin: 0 auto; width: 250px; text-align: center;" />
-            <button type="submit" id="boton">Arriesgar letra</button>
-        </form>
-    }
-
-    <p><strong>Letras usadas:</strong> @(string.IsNullOrWhiteSpace(letrasUsadas) ? "Ninguna" : letrasUsadas)</p>
-</section>
-
-<div class="text-center mt-3">
-    <a class="btn btn-link" href="#" onclick="fetch('/Home/Hint?salaId=2').then(r=>r.text()).then(t=>{document.getElementById('hint').innerHTML=t})">Pista</a>
-    <div id="hint" class="mt-3"></div>
+    </div>
 </div>

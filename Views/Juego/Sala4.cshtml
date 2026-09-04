@@ -2,17 +2,29 @@
     ViewData["Title"] = "Sala 4 - Recuperar las gemas";
 }
 
-<h2>Recuperar las Gemas</h2>
-<p>Colocá las 6 gemas en el orden correcto (separadas por comas):</p>
+<div class="room-page">
+    <div class="room-page__content">
+        <p class="game-menu__eyebrow">Sala 04 · Gemas del infinito</p>
+        <h1 class="room-page__title">Recuperar las gemas</h1>
+        <p class="room-page__text">Colocá las 6 gemas en el orden correcto separadas por comas.</p>
 
-<form method="post" action="/Juego/SubmitSala">
-    <input type="hidden" name="salaId" value="4" />
-    <div class="mb-3">
-        <input class="form-control" name="respuesta" placeholder="Tiempo,Espacio,Realidad,Poder,Mente,Alma" />
+        <form method="post" action="/Juego/SubmitSala" class="game-form room-form">
+            <input type="hidden" name="salaId" value="4" />
+
+            <label for="respuesta">Orden de las gemas</label>
+            <input id="respuesta" class="form-control" name="respuesta" placeholder="Tiempo,Espacio,Realidad,Poder,Mente,Alma" />
+
+            <div class="game-menu__actions">
+                <button class="game-button game-button--primary" type="submit">Colocar gemas <span aria-hidden="true">→</span></button>
+                <a class="game-button game-button--secondary" href="#" onclick="fetch('/Home/Hint?salaId=4').then(r=>r.text()).then(t=>{document.getElementById('hint').innerHTML=t})">Pista</a>
+            </div>
+
+            <div id="hint" class="mt-3"></div>
+        </form>
+
+        @if (TempData["Error"] != null)
+        {
+            <p class="game-form__error">@TempData["Error"]</p>
+        }
     </div>
-    <button class="btn btn-success">Colocar gemas</button>
-    <a class="btn btn-link" href="#" onclick="fetch('/Home/Hint?salaId=4').then(r=>r.text()).then(t=>{document.getElementById('hint').innerHTML=t})">Pista</a>
-    <div id="hint" class="mt-3"></div>
-</form>
-
-@if(TempData["Error"] != null){<div class="text-danger">@TempData["Error"]</div>}
+</div>
