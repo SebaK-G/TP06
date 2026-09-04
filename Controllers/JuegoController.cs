@@ -17,9 +17,40 @@ public class JuegoController : Controller
     public IActionResult Integrantes(){
         return View();
     }
+
     public IActionResult Iniciar(){
         return View();
     }
+    [HttpPost]
+    public IActionResult Iniciar(string nombre){
+        if (nombre == null){
+            nombre = "";
+        }
+        bool nombreValido = nombre.Length >= 2 && nombre.Length <= 20;
+        bool tieneLetras = false;
+
+        foreach (char letra in nombre){
+            if (char.IsLetter(letra)){
+                tieneLetras = true;
+            }
+            else if (letra != ' '){
+                nombreValido = false;
+            }
+        }
+        if (!tieneLetras){
+            nombreValido = false;
+        }
+        if (!nombreValido){
+            ViewBag.Error = "Ingresá un nombre válido usando solo letras.";
+            ViewBag.NombreIngresado = nombre;
+            return View();
+        }
+
+        bd.CrearPartida(new Partidas { NombreParticipante = nombre });
+        HttpContext.Session.SetString("NombreJugador", nombre);
+        return RedirectToAction("Sala1");
+    }
+
     public IActionResult Sala1(){
         return View();
     }
@@ -42,38 +73,11 @@ public class JuegoController : Controller
     public IActionResult Sala4(){
         return View();
     }
-
-    [HttpPost]
-    public IActionResult Iniciar(string nombre){
-        if (nombre == null){
-            nombre = "";
-        }
-        bool nombreValido = nombre.Length >= 2 && nombre.Length <= 40;
-        bool tieneLetras = false;
-
-        foreach (char letra in nombre){
-            if (char.IsLetter(letra))
-            {
-                tieneLetras = true;
-            }
-            else if (letra != ' ')
-            {
-                nombreValido = false;
-            }
-        }
-        if (!tieneLetras){
-            nombreValido = false;
-        }
-        if (!nombreValido){
-            ViewBag.Error = "Ingresá un nombre válido usando solo letras.";
-            ViewBag.NombreIngresado = nombre;
-            return View();
-        }
-
-        bd.CrearPartida(new Partidas { NombreParticipante = nombre });
-        HttpContext.Session.SetString("NombreJugador", nombre);
-        return RedirectToAction("Sala1");
+    public IActionResult Final(){
+        ViewBag.Nombre = HttpContext.Session.GetString("NombreJugador");
+        return View();
     }
+
 
 
 }

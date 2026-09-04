@@ -1,10 +1,18 @@
 @{
     ViewData["Title"] = "Victoria";
 }
+<div class="game-menu">
+    <div class="game-menu__content">
+        <div class="game-menu__eyebrow">Resultado</div>
+        <h1>¡Guantelete Completo!</h1>
+        <p class="game-menu__lead">Has completado todas las salas.</p>
+        <div class="game-menu__copy">
+            <p>Felicitaciones <strong>@ViewBag.Nombre</strong>, liberaste el poder de las gemas y restauraste el universo.</p>
+        </div>
 
-<h2>¡GUANTELETE COMPLETO!</h2>
-<p>Felicitaciones @ViewBag.Nombre, liberaste el poder de las gemas y restauraste el universo.</p>
-<div class="mt-3">
-    <a class="btn btn-primary" href="/">Volver al inicio</a>
-    <a class="btn btn-secondary" href="/Home/Identify">Nueva partida</a>
+        <div class="game-menu__actions">
+            <a class="game-button game-button--primary" href="/">Volver al inicio</a>
+            <a class="game-button game-button--secondary" href="/Juego/Iniciar">Nueva partida</a>
+        </div>
     </div>
+</div>
