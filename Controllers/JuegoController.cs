@@ -23,10 +23,7 @@ public class JuegoController : Controller
     }
     [HttpPost]
     public IActionResult Iniciar(string nombre){
-        if (nombre == null){
-            nombre = "";
-        }
-        bool nombreValido = nombre.Length >= 2 && nombre.Length <= 20;
+        bool nombreValido = nombre.Length >= 1 && nombre.Length <= 20;
         bool tieneLetras = false;
 
         foreach (char letra in nombre){
@@ -45,10 +42,16 @@ public class JuegoController : Controller
             ViewBag.NombreIngresado = nombre;
             return View();
         }
-
-        bd.CrearPartida(new Partidas { NombreParticipante = nombre });
-        HttpContext.Session.SetString("NombreJugador", nombre);
-        return RedirectToAction("Sala1");
+        else if (bd.ExisteNombre(nombre) == null){
+            ViewBag.Error = "El nombre ya está en uso. Ingresá otro.";
+            ViewBag.NombreIngresado = nombre;
+            return View();
+        }
+        else{
+            bd.CrearPartida(new Partidas { NombreParticipante = nombre });
+            HttpContext.Session.SetString("NombreJugador", nombre);
+            return RedirectToAction("Sala1");
+        }
     }
 
     public IActionResult Sala1(){
@@ -60,8 +63,8 @@ public class JuegoController : Controller
         if (respuesta == "1234"){
             return RedirectToAction("Sala2");
         }
-        TempData["Error"] = "El código no es correcto. Intentá nuevamente.";
-        return RedirectToAction("Sala1");
+        ViewBag.Error = "El código no es correcto. Intentá nuevamente.";
+        return View("Sala1");
     }
 
     public IActionResult Sala2(){

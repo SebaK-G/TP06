@@ -13,8 +13,15 @@ public class BD{
         using (SqlConnection connection = new SqlConnection(_connectionString)){
             connection.Execute(query, new { pNombreParticipante = partida.NombreParticipante, pFechaInicio = DateTime.Now });
         }
+    }    
+    public Partidas ExisteNombre(string nombre){
+        Partidas partida = null;
+        using (SqlConnection connection = new SqlConnection(_connectionString)){
+            string query = "SELECT TOP 1 * FROM Partidas WHERE NombreParticipante = @pNombre";
+            partida = connection.QueryFirstOrDefault<Partidas>(query, new { pNombre = nombre });
+        }
+        return partida;
     }
-
     public void CrearSala(SalasEstado sala){
         string query = "INSERT INTO SalasEstado (IdPartida, NumeroSala, Respuesta, Pista) VALUES (@pIdPartida, @pNumeroSala, @pRespuesta, @pPista)";
         using (SqlConnection connection = new SqlConnection(_connectionString)){

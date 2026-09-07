@@ -47,10 +47,10 @@ body {
 }
 
 .game-menu h1 {
-  margin: 0;
+  margin: 0 auto;
   color: #fffaf0;
   font-family: "Arial Black", Impact, sans-serif;
-  font-size: clamp(3.2rem, 10vw, 7rem);
+  font-size: clamp(2.5rem, 8vw, 5rem);
   line-height: .9;
   letter-spacing: .02em;
   text-transform: uppercase;

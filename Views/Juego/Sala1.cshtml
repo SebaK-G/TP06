@@ -10,13 +10,13 @@
 
         <form class="game-form room-form" method="post" action="/Juego/SubmitSala1">
             <label for="respuesta">Código de 4 números</label>
-            <input id="respuesta" name="respuesta" type="text" maxlength="4" inputmode="numeric" pattern="[0-9]{4}" required />
+            <input id="respuesta" name="respuesta" type="text" maxlength="4" inputmode="numeric" required />
             <button class="game-button game-button--primary" type="submit">Enviar <span aria-hidden="true">→</span></button>
         </form>
 
-        @if (TempData["Error"] != null)
+        @if (ViewBag.Error != null)
         {
-            <p class="game-form__error">@TempData["Error"]</p>
+            <p class="game-form__error">@ViewBag.Error</p>
         }
     </div>
 </div>
