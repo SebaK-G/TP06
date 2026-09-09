@@ -1,54 +1,40 @@
 @{
-    ViewData["Title"] = "Sala 2 - Ahorcado";
-    string palabraOculta = ViewBag.PalabraOculta as string ?? string.Empty;
-    int intentosRestantes = ViewBag.Intentos is int intentos ? intentos : 10;
-    string letrasUsadas = ViewBag.LetrasUsadas as string ?? string.Empty;
-    string mensaje = TempData["Sala2Mensaje"] as string ?? string.Empty;
-    string error = TempData["Error"] as string ?? string.Empty;
-    bool sinIntentos = intentosRestantes <= 0;
+    ViewData["Title"] = "Sala 2 - Batalla de Wakanda";
 }
 
 <div class="room-page">
     <div class="room-page__content">
-        <p class="game-menu__eyebrow">Sala 02 · Ahorcado</p>
-        <h1 class="room-page__title">Ahorcado</h1>
-        <p class="room-page__text">¡Tenés un máximo de 10 intentos para descubrir la palabra oculta!</p>
+        <p class="game-menu__eyebrow">Sala 02 · Wakanda</p>
 
-        <div class="game-form room-form">
-            <div class="text-center mb-3">
-                <h2 id="palabraOculta" class="room-page__title" style="font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem;">@palabraOculta</h2>
-            </div>
+        <h1 class="room-page__title">Proteger a Visión</h1>
 
-            <p class="game-menu__copy"><strong>Intentos restantes:</strong> <span id="intentos">@intentosRestantes</span></p>
-            <p class="game-menu__copy" id="mensaje">@mensaje</p>
+        <p class="room-page__text">
+            La batalla comenzó. Ayudá a Wanda a proteger a Visión
+            respondiendo correctamente las preguntas.
+        </p>
 
-            @if (!string.IsNullOrWhiteSpace(error))
-            {
-                <p class="game-form__error">@error</p>
-            }
+        <div class="scene-card">
+            <div class="question-card">
+                <h2>Pregunta 1</h2>
+                <p>¿Qué Gema del Infinito se encuentra en la frente de Visión?</p>
 
-            @if (sinIntentos)
-            {
-                <div class="game-menu__actions">
-                    <a class="game-button game-button--primary" href="/Home/ReiniciarSala2">Volver a intentar</a>
+                <div class="scene-card__actions game-menu__actions">
+                    <button class="game-button game-button--secondary" type="button">Gema del Poder</button>
+                    <button class="game-button game-button--secondary" type="button">Gema de la Mente</button>
+                    <button class="game-button game-button--secondary" type="button">Gema del Tiempo</button>
+                    <button class="game-button game-button--secondary" type="button">Gema del Espacio</button>
                 </div>
-            }
-            else
-            {
-                <form method="post" action="/Home/SubmitSala" class="game-form room-form">
-                    <input type="hidden" name="salaId" value="2" />
-                    <label for="respuesta">Letra</label>
-                    <input type="text" id="respuesta" name="respuesta" maxlength="1" placeholder="Ingrese la letra" />
-                    <button type="submit" id="boton" class="game-button game-button--primary">Arriesgar letra</button>
-                </form>
-            }
-
-            <p class="game-menu__copy"><strong>Letras usadas:</strong> @(string.IsNullOrWhiteSpace(letrasUsadas) ? "Ninguna" : letrasUsadas)</p>
-
-            <div class="game-menu__actions">
-                <a class="game-button game-button--secondary" href="#" onclick="fetch('/Home/Hint?salaId=2').then(r=>r.text()).then(t=>{document.getElementById('hint').innerHTML=t})">Pista</a>
             </div>
-            <div id="hint" class="mt-3"></div>
         </div>
+
+        <form class="game-form room-form" method="post" action="/Juego/ResponderSala2">
+            <input type="hidden" name="respuesta" value="" />
+            <button class="game-button game-button--primary" type="submit">Continuar<span aria-hidden="true">→</span></button>
+        </form>
+
+        @if (ViewBag.Error != null)
+        {
+            <p class="game-form__error">@ViewBag.Error</p>
+        }
     </div>
 </div>
