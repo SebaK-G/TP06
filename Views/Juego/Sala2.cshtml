@@ -5,13 +5,8 @@
 <div class="room-page">
     <div class="room-page__content">
         <p class="game-menu__eyebrow">Sala 02 · Wakanda</p>
-
         <h1 class="room-page__title">Proteger a Visión</h1>
-
-        <p class="room-page__text">
-            La batalla comenzó. Ayudá a Wanda a proteger a Visión
-            respondiendo correctamente las preguntas.
-        </p>
+        <p class="room-page__text">La batalla comenzó. Ayudá a Wanda a proteger a Visión respondiendo correctamente las preguntas.</p>
 
         <div class="scene-card">
             <div class="question-card">
@@ -19,22 +14,34 @@
                 <p>¿Qué Gema del Infinito se encuentra en la frente de Visión?</p>
 
                 <div class="scene-card__actions game-menu__actions">
-                    <button class="game-button game-button--secondary" type="button">Gema del Poder</button>
-                    <button class="game-button game-button--secondary" type="button">Gema de la Mente</button>
-                    <button class="game-button game-button--secondary" type="button">Gema del Tiempo</button>
-                    <button class="game-button game-button--secondary" type="button">Gema del Espacio</button>
+                    <button class="game-button game-button--secondary" href="/Juego/ResponderSala2?respuesta=Poder">Gema del Poder</button>
+                    <button class="game-button game-button--secondary" href="/Juego/ResponderSala2?respuesta=Mente">Gema de la Mente</button>
+                    <button class="game-button game-button--secondary" href="/Juego/ResponderSala2?respuesta=Tiempo">Gema del Tiempo</button>
+                    <button class="game-button game-button--secondary" href="/Juego/ResponderSala2?respuesta=Espacio">Gema del Espacio</button>
                 </div>
             </div>
         </div>
+
+        @if (ViewBag.Respuesta == "Poder")
+        {
+            <p class="game-form__error">@ViewBag.Error</p>
+        }
+        @if (ViewBag.Respuesta == "Mente")
+        {
+            <p class="game-form__response">Tu respuesta: @ViewBag.Respuesta</p>
+        }
+        @if (ViewBag.Respuesta == "Tiempo")
+        {
+            <p class="game-form__error">@ViewBag.Error</p>
+        }
+        @if (ViewBag.Respuesta == "Espacio")
+        {
+            <p class="game-form__error">@ViewBag.Error</p>
+        }
 
         <form class="game-form room-form" method="post" action="/Juego/ResponderSala2">
             <input type="hidden" name="respuesta" value="" />
             <button class="game-button game-button--primary" type="submit">Continuar<span aria-hidden="true">→</span></button>
         </form>
-
-        @if (ViewBag.Error != null)
-        {
-            <p class="game-form__error">@ViewBag.Error</p>
-        }
     </div>
 </div>

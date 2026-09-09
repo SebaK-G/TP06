@@ -17,7 +17,6 @@ public class JuegoController : Controller
     public IActionResult Integrantes(){
         return View();
     }
-
     public IActionResult Iniciar(){
         return View();
     }
@@ -85,6 +84,13 @@ public class JuegoController : Controller
     public IActionResult Sala2(){
         return View();
     }
+    public IActionResult ResponderSala2(string respuesta){
+        ViewBag.Respuesta = respuesta;
+        ViewBag.Error = "Tu respuesta es incorrecta. Intentá nuevamente.";
+        return View("Sala2");
+    }
+
+
     public IActionResult Sala3(){
         return View();
     }
