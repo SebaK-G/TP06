@@ -65,7 +65,7 @@ public class JuegoController : Controller
     }
     [HttpPost]
     public IActionResult ResponderSala1(string respuesta){ 
-        if (respuesta == "1234"){
+        if (respuesta == "7092"){
             return RedirectToAction("Sala2");
         }
         else{
