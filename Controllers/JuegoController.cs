@@ -94,6 +94,14 @@ public class JuegoController : Controller
     public IActionResult Sala3(){
         return View();
     }
+    public IActionResult ResponderSala3(string respuesta1, string respuesta2, string respuesta3, string respuesta4){
+        if(respuesta1 == "Loki" & respuesta2 == "Tony" && respuesta3 == "Sam" && respuesta4 == "Tony"){
+            return RedirectToAction ("Sala4");
+        }
+        else{
+            return View("Sala3");
+        }
+    }
     public IActionResult Sala4(){
         return View();
     }
