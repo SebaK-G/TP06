@@ -239,6 +239,31 @@ body {
   width: min(100%, 680px);
 }
 
+.scene-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  margin: 2rem 0;
+}
+
+.scene-card__image {
+  display: block;
+  width: min(100%, 820px);
+  height: auto;
+  border: 2px solid #eab758;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+.scene-card__actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: .8rem;
+  margin-top: .5rem;
+}
+
 .room-page__title {
   margin: 0;
   color: #fffaf0;
@@ -343,12 +368,13 @@ body {
 
 .game-button--secondary {
   border-color: #eab758;
+  background: #101820;
   color: #eab758;
 }
 
 .game-button--secondary:hover {
-  background: #eab758;
-  color: #101820;
+  background: #101820;
+  color: #fffaf0;
 }
 
 .game-button--quiet {

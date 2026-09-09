@@ -42,7 +42,7 @@ public class JuegoController : Controller
             ViewBag.NombreIngresado = nombre;
             return View();
         }
-        else if (bd.ExisteNombre(nombre) == null){
+        else if (bd.ExisteNombre(nombre) != null){
             ViewBag.Error = "El nombre ya está en uso. Ingresá otro.";
             ViewBag.NombreIngresado = nombre;
             return View();
@@ -53,19 +53,34 @@ public class JuegoController : Controller
             return RedirectToAction("Sala1");
         }
     }
+    public IActionResult Final(){
+        ViewBag.Nombre = HttpContext.Session.GetString("NombreJugador");
+        return View();
+    }
+
+
+
 
     public IActionResult Sala1(){
         return View();
     }
-
     [HttpPost]
-    public IActionResult SubmitSala1(string respuesta){ /*Revisar*/
+    public IActionResult ResponderSala1(string respuesta){ 
         if (respuesta == "1234"){
             return RedirectToAction("Sala2");
         }
-        ViewBag.Error = "El código no es correcto. Intentá nuevamente.";
+        else{
+            ViewBag.Error = "El código no es correcto. Intentá nuevamente.";
+            return View("Sala1");
+        }
+    }
+    public IActionResult MensajesSala1(string personaje){
+        ViewBag.Personaje = personaje;
         return View("Sala1");
     }
+
+
+
 
     public IActionResult Sala2(){
         return View();
@@ -76,10 +91,9 @@ public class JuegoController : Controller
     public IActionResult Sala4(){
         return View();
     }
-    public IActionResult Final(){
-        ViewBag.Nombre = HttpContext.Session.GetString("NombreJugador");
-        return View();
-    }
+
+
+
 
 
 
