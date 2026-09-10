@@ -428,3 +428,59 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+
+/* Sala 4 - Batalla Final */
+.sala4-container {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.sala4-tiempo {
+  font-size: clamp(2.5rem, 10vw, 4rem);
+  font-weight: 700;
+  color: #e65e4f;
+  margin-top: 1.5rem;
+  font-family: "Courier New", monospace;
+  letter-spacing: 0.1em;
+}
+
+.sala4-imagen {
+  width: min(300px, 90vw);
+  height: auto;
+  margin-top: 1.5rem;
+  cursor: pointer;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  transition: transform 0.1s ease-out;
+}
+
+.sala4-imagen:hover {
+  transform: scale(1.05);
+}
+
+.sala4-imagen:active {
+  transform: scale(0.95);
+}
+
+.sala4-clicks {
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  font-weight: 700;
+  color: #eab758;
+  margin-top: 1rem;
+  font-family: "Trebuchet MS", sans-serif;
+}
+
+.sala4-mensaje {
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  font-weight: 700;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.sala4-mensaje--victoria {
+  color: #27ae60;
+}
+
+.sala4-mensaje--derrota {
+  color: #e65e4f;
+}

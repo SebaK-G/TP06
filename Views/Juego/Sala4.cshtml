@@ -8,28 +8,28 @@
         <h1 class="room-page__title">Pelea contra Thanos</h1>
         <p class="room-page__text">Derrota a Thanos a clicks antes de que vuelva a chasquear los dedos</p>
 
-        <div style="text-align: center; margin-top: 30px;">
+        <div class="sala4-container">
             <button class="game-button game-button--primary" type="button" onclick="iniciarTemporizador()" id="btnIniciar">Iniciar pelea</button>
 
-            <div id="tiempoDisplay" style="font-size: 48px; font-weight: bold; color: #e74c3c; margin-top: 20px; font-family: monospace; display: none;">
+            <div id="tiempoDisplay" class="sala4-tiempo" style="display: none;">
                 00:10
             </div>
 
-            <img id="thanosImg" src="~/Imagenes/thanos.jpg" alt="Thanos" style="display: none; width: 200px; height: auto; margin-top: 20px; cursor: pointer;" onclick="clickEnThanos()" />
+            <img id="thanosImg" src="~/Imagenes/thanos.jpg" alt="Thanos" class="sala4-imagen" style="display: none;" onclick="clickEnThanos()" />
 
-            <div id="clicksDisplay" style="font-size: 24px; font-weight: bold; color: #3498db; margin-top: 15px; display: none;">
+            <div id="clicksDisplay" class="sala4-clicks" style="display: none;">
                 Clicks: <span id="clicksCount">0</span>/90
             </div>
             
-            <div id="mensajeFinal" style="font-size: 24px; font-weight: bold; color: #27ae60; margin-top: 20px; display: none;">
+            <div id="mensajeFinal" class="sala4-mensaje sala4-mensaje--victoria" style="display: none;">
                 ¡Ganaste! Derrotaste a Thanos
             </div>
+            <a href="/Juego/Final" id="btnContinuar" class="game-button game-button--primary" style="display: none;">Continuar</a>
 
-            <a href="/Juego/Final" id="btnContinuar" class="game-button game-button--primary" style="display: none; margin-top: 20px; text-decoration: none;">Continuar</a>
-
-            <div id="mensajeDerrota" style="font-size: 24px; font-weight: bold; color: #e74c3c; margin-top: 20px; display: none;">
+            <div id="mensajeDerrota" class="sala4-mensaje sala4-mensaje--derrota" style="display: none;">
                 No llegaste a tiempo - Intentalo de nuevo
             </div>
         </div>
 
-        <script src="~/js/sala4.js"></script>
+    </div>
+</div>
