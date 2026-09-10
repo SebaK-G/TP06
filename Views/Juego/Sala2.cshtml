@@ -1,5 +1,11 @@
 @{
     ViewData["Title"] = "Sala 2 - Batalla de Wakanda";
+
+    int pregunta = 1;
+    if (ViewBag.PreguntaActual != null)
+    {
+        pregunta = ViewBag.PreguntaActual;
+    }
 }
 
 <div class="room-page">
@@ -8,79 +14,94 @@
         <h1 class="room-page__title">Proteger a Visión</h1>
         <p class="room-page__text">La batalla comenzó. Ayudá a Wanda a proteger a Visión respondiendo correctamente las preguntas.</p>
 
-        <div class="scene-card">
-            <div class="question-card" id="1">
-                <h2>Pregunta 1</h2>
-                <p>¿Qué Gema del Infinito se encuentra en la frente de Visión?</p>
-                <div class="scene-card__actions game-menu__actions">
-                    <button type="button" class="game-button game-button--secondary" value="Poder">Gema del Poder</button>
-                    <button type="button" class="game-button game-button--secondary" value="Mente">Gema de la Mente</button>
-                    <button type="button" class="game-button game-button--secondary" value="Tiempo">Gema del Tiempo</button>
-                    <button type="button" class="game-button game-button--secondary" value="Espacio">Gema del Espacio</button>
-                </div>
-            </div>
-            <div class="question-card" id="2" style="display:none;">
-                <h2>Pregunta 2</h2>
-                <p>¿Dónde se encontraba Vision al comienzo de Infinity War cuando es atacado por la Orden Negra?</p>
-                <div class="scene-card__actions game-menu__actions">
-                    <button type="button" class="game-button game-button--secondary" value="Wakanda">Wakanda</button>
-                    <button type="button" class="game-button game-button--secondary" value="Nueva York">Nueva York</button>
-                    <button type="button" class="game-button game-button--secondary" value="Sokovia">Sokovia</button>
-                    <button type="button" class="game-button game-button--secondary" value="Edimburgo">Edimburgo</button>
-                </div>
-            </div>
-            <div class="question-card" id="3" style="display:none;">
-                <h2>Pregunta 3</h2>
-                <p>¿Qué personaje logra herir gravemente a Vision con un arma capaz de atravesar su cuerpo?</p>
-                <div class="scene-card__actions game-menu__actions">
-                    <button type="button" class="game-button game-button--secondary" value="Corvus Glaive">Corvus Glaive</button>
-                    <button type="button" class="game-button game-button--secondary" value="Proxima Midnight">Proxima Midnight</button>
-                    <button type="button" class="game-button game-button--secondary" value="Ebony Maw">Ebony Maw</button>
-                    <button type="button" class="game-button game-button--secondary" value="Cull Obsidian">Cull Obsidian</button>
-                </div>
-            </div>
-            <div class="question-card" id="4" style="display:none;">
-                <h2>Pregunta 4</h2>
-                <p>¿Por qué Vision no puede simplemente quitarse la Gema de la Mente de la frente?</p>
-                <div class="scene-card__actions game-menu__actions">
-                    <button type="button" class="game-button game-button--secondary" value="Integrada">Porque la Gema está integrada a su funcionamiento</button>
-                    <button type="button" class="game-button game-button--secondary" value="Hechizo">Porque está protegida por un hechizo</button>
-                    <button type="button" class="game-button game-button--secondary" value="Controlada">Porque Thanos la controla a distancia</button>
-                    <button type="button" class="game-button game-button--secondary" value="Fusionada">Porque está fusionada con su traje</button>
-                </div>
-            </div>
-            <div class="question-card" id="5" style="display:none;">
-                <h2>Pregunta 5</h2>
-                <p>¿Qué propone Shuri para intentar salvar a Vision?</p>
-                <div class="scene-card__actions game-menu__actions">
-                    <button type="button" class="game-button game-button--secondary" value="Transferir">Transferir la Gema a Bruce Banner</button>
-                    <button type="button" class="game-button game-button--secondary" value="Separar">Separar la Gema de la Mente de Vision sin destruir su personalidad</button>
-                    <button type="button" class="game-button game-button--secondary" value="Esconder">Esconder la Gema en Wakanda</button>
-                    <button type="button" class="game-button game-button--secondary" value="Destruir">Destruir el cuerpo de Vision y reconstruirlo</button>
-                </div>
-            </div>
-        </div>
-
-        @switch (ViewBag.Respuesta){
-            case "Poder":
-                <p class="game-form__error">@ViewBag.Error</p>
-                break;
-            case "Mente":
-            
-                break;
-            case "Tiempo":
-                <p class="game-form__error">@ViewBag.Error</p>
-                break;
-            case "Espacio":
-                <p class="game-form__error">@ViewBag.Error</p>
-                break;
-            default:
-                break;
+        @if (ViewBag.Error != null)
+        {
+            <p class="game-form__error">@ViewBag.Error</p>
         }
 
-        <form class="game-form room-form" method="post" action="/Juego/ResponderSala2">
-            <input type="hidden" name="respuesta" value="" />
-            <button id="submit-btn" class="game-button game-button--primary" type="submit">Continuar<span aria-hidden="true">→</span></button>
-        </form>
+        <div class="scene-card">
+            @switch (pregunta)
+            {
+                case 1:
+                    <div class="question-card" id="1">
+                        <h2>Pregunta 1</h2>
+                        <p>¿Qué Gema del Infinito se encuentra en la frente de Visión?</p>
+                        <form method="post" action="/Juego/Sala2">
+                            <input type="hidden" name="pregunta" value="1" />
+                            <div class="scene-card__actions game-menu__actions">
+                                <button type="submit" name="respuesta" value="Poder" class="game-button game-button--secondary">Gema del Poder</button>
+                                <button type="submit" name="respuesta" value="Mente" class="game-button game-button--secondary">Gema de la Mente</button>
+                                <button type="submit" name="respuesta" value="Tiempo" class="game-button game-button--secondary">Gema del Tiempo</button>
+                                <button type="submit" name="respuesta" value="Espacio" class="game-button game-button--secondary">Gema del Espacio</button>
+                            </div>
+                        </form>
+                    </div>
+                    break;
+
+                case 2:
+                    <div class="question-card" id="2">
+                        <h2>Pregunta 2</h2>
+                        <p>¿Dónde se encontraba Vision al comienzo de Infinity War cuando es atacado por la Orden Negra?</p>
+                        <form method="post" action="/Juego/Sala2">
+                            <input type="hidden" name="pregunta" value="2" />
+                            <div class="scene-card__actions game-menu__actions">
+                                <button type="submit" name="respuesta" value="Wakanda" class="game-button game-button--secondary">Wakanda</button>
+                                <button type="submit" name="respuesta" value="Nueva York" class="game-button game-button--secondary">Nueva York</button>
+                                <button type="submit" name="respuesta" value="Sokovia" class="game-button game-button--secondary">Sokovia</button>
+                                <button type="submit" name="respuesta" value="Edimburgo" class="game-button game-button--secondary">Edimburgo</button>
+                            </div>
+                        </form>
+                    </div>
+                    break;
+
+                case 3:
+                    <div class="question-card" id="3">
+                        <h2>Pregunta 3</h2>
+                        <p>¿Qué personaje logra herir gravemente a Vision con un arma capaz de atravesar su cuerpo?</p>
+                        <form method="post" action="/Juego/Sala2">
+                            <input type="hidden" name="pregunta" value="3" />
+                            <div class="scene-card__actions game-menu__actions">
+                                <button type="submit" name="respuesta" value="Corvus Glaive" class="game-button game-button--secondary">Corvus Glaive</button>
+                                <button type="submit" name="respuesta" value="Proxima Midnight" class="game-button game-button--secondary">Proxima Midnight</button>
+                                <button type="submit" name="respuesta" value="Ebony Maw" class="game-button game-button--secondary">Ebony Maw</button>
+                                <button type="submit" name="respuesta" value="Cull Obsidian" class="game-button game-button--secondary">Cull Obsidian</button>
+                            </div>
+                        </form>
+                    </div>
+                    break;
+
+                case 4:
+                    <div class="question-card" id="4">
+                        <h2>Pregunta 4</h2>
+                        <p>¿Por qué Vision no puede simplemente quitarse la Gema de la Mente de la frente?</p>
+                        <form method="post" action="/Juego/Sala2">
+                            <input type="hidden" name="pregunta" value="4" />
+                            <div class="scene-card__actions game-menu__actions">
+                                <button type="submit" name="respuesta" value="Integrada" class="game-button game-button--secondary">Porque la Gema está integrada a su funcionamiento</button>
+                                <button type="submit" name="respuesta" value="Hechizo" class="game-button game-button--secondary">Porque está protegida por un hechizo</button>
+                                <button type="submit" name="respuesta" value="Controlada" class="game-button game-button--secondary">Porque Thanos la controla a distancia</button>
+                                <button type="submit" name="respuesta" value="Fusionada" class="game-button game-button--secondary">Porque está fusionada con su traje</button>
+                            </div>
+                        </form>
+                    </div>
+                    break;
+
+                case 5:
+                    <div class="question-card" id="5">
+                        <h2>Pregunta 5</h2>
+                        <p>¿Qué propone Shuri para intentar salvar a Vision?</p>
+                        <form method="post" action="/Juego/Sala2">
+                            <input type="hidden" name="pregunta" value="5" />
+                            <div class="scene-card__actions game-menu__actions">
+                                <button type="submit" name="respuesta" value="Transferir" class="game-button game-button--secondary">Transferir la Gema a Bruce Banner</button>
+                                <button type="submit" name="respuesta" value="Separar" class="game-button game-button--secondary">Separar la Gema de la Mente de Vision sin destruir su personalidad</button>
+                                <button type="submit" name="respuesta" value="Esconder" class="game-button game-button--secondary">Esconder la Gema en Wakanda</button>
+                                <button type="submit" name="respuesta" value="Destruir" class="game-button game-button--secondary">Destruir el cuerpo de Vision y reconstruirlo</button>
+                            </div>
+                        </form>
+                    </div>
+                    break;
+            }
+        </div>
     </div>
 </div>

@@ -80,15 +80,23 @@ public class JuegoController : Controller
 
 
 
-
-    public IActionResult Sala2(){
-        return View();
+    public IActionResult Sala2(int pregunta = 1, string respuesta = ""){
+    string[] respuestasCorrectas = { "", "Mente", "Edimburgo", "Corvus Glaive", "Integrada", "Separar" };
+    if (respuesta == respuestasCorrectas[pregunta])
+    {
+        pregunta++;
+        if (pregunta > 5)
+        {
+            return View("Sala3");
+        }
     }
-    public IActionResult ResponderSala2(string respuesta){
-        ViewBag.Respuesta = respuesta;
-        ViewBag.Error = "Tu respuesta es incorrecta. Intentá nuevamente.";
-        return View("Sala2");
+    else if (respuesta != "")
+    {
+        ViewBag.Error = "¡Respuesta incorrecta! Volvé a intentarlo.";
     }
+    ViewBag.PreguntaActual = pregunta;
+    return View("Sala2");
+}
 
 
     public IActionResult Sala3(){
