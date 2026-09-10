@@ -6,67 +6,30 @@
     <div class="room-page__content">
         <p class="game-menu__eyebrow">Sala 03 · Viaje en el tiempo</p>
         <h1 class="room-page__title">Cinco años después</h1>
-        <p class="room-page__text">Contestá las preguntas para formar un código de 4 dígitos y seguir avanzando.</p>
+        <p class="room-page__text">Encuentra las coordenadas para conseguir las gemas del infinito</p>
 
-        <form method="post" action="/Juego/SubmitSala" class="game-form room-form">
-            <input type="hidden" name="salaId" value="3" />
-
-            <div class="mb-3">
-                <label>1) ¿Quién es el hermano de Thor?</label>
-                <select class="form-control" name="q1">
-                    <option value = "10">Elegir opcion</option>
-                    <option value="2"id="respuesta3">Vision</option>
-                    <option value="3"id="respuesta3">Bucky</option>
-                    <option value="4"id="respuesta3">Scott</option>
-                    <option value="1" id="respuesta3">Loki</option>
-                </select>
-            </div>
-
-            <div class="mb-3">
-                <label>2) ¿Quién creó a Ultron?</label>
-                <select class="form-control" name="q2">
-                    <option value = "10">Elegir opcion</option>
-                    <option value="1" id="respuesta3">Tony</option>
-                    <option value="2"id="respuesta3">Bruce</option>
-                    <option value="3"id="respuesta3">Thanos</option>
-                    <option value="4"id="respuesta3">Nick</option>
-                </select>
-            </div>
-
-            <div class="mb-3">
-                <label>3) ¿Quién fue compañero de Capitán América?</label>
-                <select class="form-control" name="q3">
-                    <option value = "10">Elegir opcion</option>
-                    <option value="4"id="respuesta3">Vision</option>
-                    <option value="1" id="respuesta3">Sam</option>
-                    <option value="2"id="respuesta3">Loki</option>
-                    <option value="3"id="respuesta3">Hawkeye</option>
-                </select>
-            </div>
-
-            <div class="mb-3">
-                <label>4) ¿Qué héroe piloteó el traje hasta Titan?</label>
-                <select class="form-control" name="q4">
-                    <option value = "10">Elegir opcion</option>
-                    <option value="4"id="respuesta 4">Groot</option>
-                    <option value="2"id="respuesta 4">Peter</option>
-                    <option value="1" id="respuesta 4">Tony</option>
-                    <option value="3"id="respuesta 4">Drax</option>
-                    
-                </select>
-            </div>
-
-            <input type="hidden" name="extra" id="code" />
-            <input type="hidden" name="respuesta" value="quiz" />
-
-            <div class="game-menu__actions">
-                <button class="game-button game-button--primary" type="button" onclick="genCode()">Generar código <span aria-hidden="true">→</span></button>
-                <a class="game-button game-button--secondary" href="#" onclick="fetch('/Home/Hint?salaId=3').then(r=>r.text()).then(t=>{document.getElementById('hint').innerHTML=t})">Pista</a>
-            </div>
-
-            <div id="hint" class="mt-3"></div>
-            <button type="submit" class="d-none" id="submitBtn"></button>
+        <form class="game-form room-form" method="post" action="/Juego/ResponderSala3">
+            <h1>Ingresa el año correcto para viajar y recuperar las gemas</h1>
+            <label for="respuesta">Stark Industries - Time machine</label>
+            <input id="respuesta" name="respuesta" type="text" maxlength="4" inputmode="numeric" required />
+            <button class="game-button game-button--primary" type="submit">Enviar <span aria-hidden="true">→</span></button>
         </form>
+
+        @if (ViewBag.Error != null){
+            <p class="game-form__error">@ViewBag.Error</p>
+        }
+
+        <form method="post" action="/Juego/MostrarPista" style="margin-top: 15px;">
+            <button class="game-button game-button--secondary" type="submit">Mostrar Pista</button>
+        </form>
+
+        @if (ViewBag.Pistas != null){
+            <div class="pistas-box" style="margin-top: 20px; padding: 15px; background-color: #f0f0f0; border-left: 4px solid #ffc107; border-radius: 4px;">
+                <h3>Pista:</h3>
+                <p>@ViewBag.Pistas</p>
+            </div>
+        }
+
     </div>
 </div>
 
