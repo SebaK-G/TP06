@@ -223,10 +223,6 @@ body {
   color: #f07160;
 }
 
-.game-form__success {
-  color: #eab758;
-}
-
 .room-page {
   min-height: calc(100vh - 100px);
   display: grid;
@@ -428,15 +424,6 @@ body {
   color: #fffaf0;
 }
 
-.game-button--quiet {
-  min-width: auto;
-  color: #c8d0d0;
-}
-
-.game-button--quiet:hover {
-  color: #fffaf0;
-}
-
 @media (max-width: 575px) {
   .game-menu {
     min-height: calc(100vh - 150px);
@@ -534,34 +521,4 @@ body {
 
 .sala4-mensaje--derrota {
   color: #e65e4f;
-}
-
-.barra {
-    width: 80%;
-    height: 20px;
-    border: 2px solid white;
-    position: relative;
-    margin: 30px auto;
-}
-
-#indicador {
-    width: 15px;
-    height: 30px;
-    background-color: red;
-    position: absolute;
-    top: -7px;
-    left: 0;
-}
-
-.zona-correcta {
-    position: absolute;
-    left: 45%;
-    width: 10%;
-    height: 100%;
-    background-color: green;
-}
-
-#botonViaje {
-    padding: 10px 20px;
-    cursor: pointer;
 }
