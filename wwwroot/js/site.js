@@ -70,11 +70,11 @@ function iniciarTemporizador() {
 
 function clickEnThanos() {
     if (!juegoEnProgreso) return;
-    
+
     clicksCount++;
     document.getElementById('clicksCount').textContent = clicksCount;
 
-    if (clicksCount >= 90) {
+    if (clicksCount >= 50) {
         juegoEnProgreso = false;
         document.getElementById('tiempoDisplay').style.display = 'none';
         document.getElementById('thanosImg').style.display = 'none';
@@ -82,5 +82,6 @@ function clickEnThanos() {
         document.getElementById('mensajeFinal').style.display = 'block';
         document.getElementById('btnContinuar').style.display = 'block';
         document.getElementById('btnIniciar').disabled = false;
+
     }
 }

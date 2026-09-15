@@ -1,35 +1,43 @@
 @{
-    ViewData["Title"] = "Sala 4 - Recuperar las gemas";
+    ViewData["Title"] = "Sala 4 - Batalla final";
 }
 
 <div class="room-page">
     <div class="room-page__content">
         <p class="game-menu__eyebrow">Sala 04 · Batalla final</p>
         <h1 class="room-page__title">Pelea contra Thanos</h1>
-        <p class="room-page__text">Derrota a Thanos a clicks antes de que vuelva a chasquear los dedos</p>
+        <p class="room-page__text">Derrota a Thanos a clicks antes de que vuelva a chasquear los dedos.</p>
 
-        <div class="sala4-container">
-            <button class="game-button game-button--primary" type="button" onclick="iniciarTemporizador()" id="btnIniciar">Iniciar pelea</button>
+        <div class="scene-card scene-card--battle">
+            <div class="battle-panel">
+                <div class="game-menu__actions">
+                    <button class="game-button game-button--primary" type="button" onclick="iniciarTemporizador()" id="btnIniciar">Iniciar pelea</button>
+                </div>
 
-            <div id="tiempoDisplay" class="sala4-tiempo" style="display: none;">
-                00:10
-            </div>
+                <div class="battle-status">
+                    <div id="tiempoDisplay" class="sala4-tiempo" style="display: none;">
+                        00:10
+                    </div>
 
-            <img id="thanosImg" src="~/Imagenes/thanos.jpg" alt="Thanos" class="sala4-imagen" style="display: none;" onclick="clickEnThanos()" />
+                    <div id="clicksDisplay" class="sala4-clicks" style="display: none;">
+                        Clicks: <span id="clicksCount">0</span>/50
+                    </div>
+                </div>
 
-            <div id="clicksDisplay" class="sala4-clicks" style="display: none;">
-                Clicks: <span id="clicksCount">0</span>/90
-            </div>
-            
-            <div id="mensajeFinal" class="sala4-mensaje sala4-mensaje--victoria" style="display: none;">
-                ¡Ganaste! Derrotaste a Thanos
-            </div>
-            <a href="/Juego/Final" id="btnContinuar" class="game-button game-button--primary" style="display: none;">Continuar</a>
+                <img id="thanosImg" src="~/Imagenes/Thanos.jpg" alt="Thanos" class="sala4-imagen" style="display: none;" onclick="clickEnThanos()" />
 
-            <div id="mensajeDerrota" class="sala4-mensaje sala4-mensaje--derrota" style="display: none;">
-                No llegaste a tiempo - Intentalo de nuevo
+                <div id="mensajeFinal" class="sala4-mensaje sala4-mensaje--victoria" style="display: none;">
+                    ¡Ganaste! Derrotaste a Thanos.
+                </div>
+
+                <div id="mensajeDerrota" class="sala4-mensaje sala4-mensaje--derrota" style="display: none;">
+                    No llegaste a tiempo. Intentá de nuevo.
+                </div>
+
+                <div class="game-menu__actions">
+                    <a href="/Juego/Final" id="btnContinuar" class="game-button game-button--primary" style="display: none;">Continuar <span aria-hidden="true">→</span></a>
+                </div>
             </div>
         </div>
-
     </div>
 </div>

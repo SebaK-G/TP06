@@ -52,13 +52,6 @@ public class JuegoController : Controller
             return RedirectToAction("Sala1");
         }
     }
-    public IActionResult Final(){
-        ViewBag.Nombre = HttpContext.Session.GetString("NombreJugador");
-        return View();
-    }
-
-
-
     public IActionResult Sala1(){
         return View();
     }
@@ -76,9 +69,6 @@ public class JuegoController : Controller
         ViewBag.Personaje = personaje;
         return View("Sala1");
     }
-
-
-
     public IActionResult Sala2(int pregunta = 1, string respuesta = ""){
     string[] respuestasCorrectas = { "", "Mente", "Edimburgo", "Corvus Glaive", "Integrada", "Separar" };
     if (respuesta == respuestasCorrectas[pregunta]){
@@ -94,21 +84,16 @@ public class JuegoController : Controller
     ViewBag.PreguntaActual = pregunta;
     return View("Sala2");
 }
-
-
-
     public IActionResult Sala3(){
         return View();
     }
-
-
-    
     public IActionResult Sala4(){
         return View();
     }
-
-
-
+    public IActionResult Final(){
+        ViewBag.Nombre = HttpContext.Session.GetString("NombreJugador");
+        return View();
+    }
 
 
 
