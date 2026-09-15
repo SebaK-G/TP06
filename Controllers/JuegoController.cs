@@ -59,7 +59,6 @@ public class JuegoController : Controller
 
 
 
-
     public IActionResult Sala1(){
         return View();
     }
@@ -82,11 +81,9 @@ public class JuegoController : Controller
 
     public IActionResult Sala2(int pregunta = 1, string respuesta = ""){
     string[] respuestasCorrectas = { "", "Mente", "Edimburgo", "Corvus Glaive", "Integrada", "Separar" };
-    if (respuesta == respuestasCorrectas[pregunta])
-    {
+    if (respuesta == respuestasCorrectas[pregunta]){
         pregunta++;
-        if (pregunta > 5)
-        {
+        if (pregunta > 5){
             return View("Sala3");
         }
     }
@@ -99,17 +96,13 @@ public class JuegoController : Controller
 }
 
 
+
     public IActionResult Sala3(){
         return View();
     }
-    public IActionResult ResponderSala3(string respuesta1, string respuesta2, string respuesta3, string respuesta4){
-        if(respuesta1 == "Loki" & respuesta2 == "Tony" && respuesta3 == "Sam" && respuesta4 == "Tony"){
-            return RedirectToAction ("Sala4");
-        }
-        else{
-            return View("Sala3");
-        }
-    }
+
+
+    
     public IActionResult Sala4(){
         return View();
     }

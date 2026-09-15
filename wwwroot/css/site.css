@@ -281,6 +281,57 @@ body {
   line-height: 1.7;
 }
 
+.scene-card--travel {
+  padding: 1.5rem 1rem 1.25rem;
+  border: 1px solid #39454a;
+  background: #18242b;
+}
+
+.travel-panel {
+  width: min(100%, 620px);
+  margin: 0 auto;
+}
+
+.travel-strip {
+  position: relative;
+  height: 2.5rem;
+  border: 2px solid #eab758;
+  border-radius: 999px;
+  background-color: #704d31;
+  overflow: hidden;
+}
+
+.travel-zone {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 45%;
+  width: 10%;
+  border-radius: 1px;
+  background: rgba(114, 255, 33, 0.45);
+  box-shadow: inset 0 0 0 1px rgba(255, 250, 240, 0.28);
+}
+
+.travel-indicator {
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  width: 1.15rem;
+  height: 1.15rem;
+  border: 2px solid #fffaf0;
+  border-radius: 50%;
+  background: #e65e4f;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 0 6px rgba(230, 94, 79, 0.2);
+}
+
+.travel-message {
+  margin: 1.5rem 0 1rem;
+  color: #fffaf0;
+  font-family: "Trebuchet MS", sans-serif;
+  font-size: 1rem;
+}
+
 .room-form {
   text-align: left;
 }
@@ -483,4 +534,34 @@ body {
 
 .sala4-mensaje--derrota {
   color: #e65e4f;
+}
+
+.barra {
+    width: 80%;
+    height: 20px;
+    border: 2px solid white;
+    position: relative;
+    margin: 30px auto;
+}
+
+#indicador {
+    width: 15px;
+    height: 30px;
+    background-color: red;
+    position: absolute;
+    top: -7px;
+    left: 0;
+}
+
+.zona-correcta {
+    position: absolute;
+    left: 45%;
+    width: 10%;
+    height: 100%;
+    background-color: green;
+}
+
+#botonViaje {
+    padding: 10px 20px;
+    cursor: pointer;
 }

@@ -4,32 +4,31 @@
 
 <div class="room-page">
     <div class="room-page__content">
-        <p class="game-menu__eyebrow">Sala 03 · Viaje en el tiempo</p>
-        <h1 class="room-page__title">Cinco años después</h1>
-        <p class="room-page__text">Encuentra las coordenadas para conseguir las gemas del infinito</p>
+        <p class="game-menu__eyebrow">Sala 03 · 5 años tras la derrota</p>
+        <h1 class="room-page__title">Viaje en el tiempo</h1>
+        <p class="room-page__text">El viaje temporal está desestabilizado. Activá el salto en el momento correcto para llegar a la última batalla.</p>
 
-        <form class="game-form room-form" method="post" action="/Juego/ResponderSala3">
-            <h1>Ingresa el año correcto para viajar y recuperar las gemas</h1>
-            <label for="respuesta">Stark Industries - Time machine</label>
-            <input id="respuesta" name="respuesta" type="text" maxlength="4" inputmode="numeric" required />
-            <button class="game-button game-button--primary" type="submit">Enviar <span aria-hidden="true">→</span></button>
-        </form>
+        <div class="scene-card scene-card--travel">
+            <div class="travel-panel">
+                <div class="travel-strip" aria-label="Barra de viaje temporal">
+                    <div class="travel-zone travel-zone--safe" aria-hidden="true"></div>
+                    <div id="indicador" class="travel-indicator" aria-hidden="true"></div>
+                </div>
 
-        @if (ViewBag.Error != null){
-            <p class="game-form__error">@ViewBag.Error</p>
-        }
+                <p id="mensaje" class="travel-message">
+                    Esperá el momento adecuado...
+                </p>
 
-        <form method="post" action="/Juego/MostrarPista" style="margin-top: 15px;">
-            <button class="game-button game-button--secondary" type="submit">Mostrar Pista</button>
-        </form>
-
-        @if (ViewBag.Pistas != null){
-            <div class="pistas-box" style="margin-top: 20px; padding: 15px; background-color: #f0f0f0; border-left: 4px solid #ffc107; border-radius: 4px;">
-                <h3>Pista:</h3>
-                <p>@ViewBag.Pistas</p>
+                <div class="game-menu__actions">
+                    <button id="botonViaje" class="game-button game-button--primary" type="button" onclick="activarViaje()">
+                        Activar viaje <span aria-hidden="true">→</span>
+                    </button>
+                </div>
             </div>
-        }
+        </div>
 
+        <form id="formViaje" action="@Url.Action("Sala4", "Juego")" method="post">
+        </form>
     </div>
 </div>
 
