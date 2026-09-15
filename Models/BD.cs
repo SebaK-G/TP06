@@ -22,12 +22,14 @@ public class BD{
         }
         return partida;
     }
-    public void CrearSala(SalasEstado sala){
-        string query = "INSERT INTO SalasEstado (IdPartida, NumeroSala, Respuesta, Pista) VALUES (@pIdPartida, @pNumeroSala, @pRespuesta, @pPista)";
+    public int CalcularTiempoPartida(string nombre){
         using (SqlConnection connection = new SqlConnection(_connectionString)){
-            connection.Execute(query, new { pIdPartida = sala.IdPartida, pNumeroSala = sala.NumeroSala, pRespuesta = sala.Respuesta, pPista = sala.Pista});
+            string query = "SELECT TOP 1 FechaInicio FROM Partidas WHERE NombreParticipante = @pNombre";
+            DateTime fechaInicio = connection.QueryFirstOrDefault<DateTime>(query, new { pNombre = nombre });
+            return (int)(DateTime.Now - fechaInicio).TotalSeconds;
         }
     }
+
 
 
 

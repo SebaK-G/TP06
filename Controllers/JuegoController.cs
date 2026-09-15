@@ -92,6 +92,7 @@ public class JuegoController : Controller
     }
     public IActionResult Final(){
         ViewBag.Nombre = HttpContext.Session.GetString("NombreJugador");
+        ViewBag.TiempoPartida = bd.CalcularTiempoPartida(ViewBag.Nombre);
         return View();
     }
 
