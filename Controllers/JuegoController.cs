@@ -53,12 +53,18 @@ public class JuegoController : Controller
         }
     }
     public IActionResult Sala1(){
-        return View();
+        if (HttpContext.Session.GetString("NombreJugador") == null){
+            return RedirectToAction("Iniciar");
+        }
+        else{
+            return View();
+        }
     }
     [HttpPost]
     public IActionResult ResponderSala1(string respuesta){ 
         if (respuesta == "5675"){
             return RedirectToAction("Sala2");
+            HttpContext.Session.SetString("EstadoSala1", true.ToString());
         }
         else{
             ViewBag.Error = "El código no es correcto. Intentá nuevamente.";
@@ -70,22 +76,33 @@ public class JuegoController : Controller
         return View("Sala1");
     }
     public IActionResult Sala2(int pregunta = 1, string respuesta = ""){
-    string[] respuestasCorrectas = { "", "Mente", "Edimburgo", "Corvus Glaive", "Integrada", "Separar" };
-    if (respuesta == respuestasCorrectas[pregunta]){
-        pregunta++;
-        if (pregunta > 5){
-            return View("Sala3");
+        if (HttpContext.Session.GetString("EstadoSala1") != true.ToString()){
+            return RedirectToAction("Sala1");
         }
+
+
+        string[] respuestasCorrectas = { "", "Mente", "Edimburgo", "Corvus Glaive", "Integrada", "Separar" };
+        if (respuesta == respuestasCorrectas[pregunta]){
+            pregunta++;
+            if (pregunta > 5){
+                return View("Sala3");
+                HttpContext.Session.SetString("EstadoSala2", true.ToString());
+            }
+        }
+        else if (respuesta != "")
+        {
+            ViewBag.Error = "¡Respuesta incorrecta! Volvé a intentarlo.";
+        }
+        ViewBag.PreguntaActual = pregunta;
+        return View("Sala2");
     }
-    else if (respuesta != "")
-    {
-        ViewBag.Error = "¡Respuesta incorrecta! Volvé a intentarlo.";
-    }
-    ViewBag.PreguntaActual = pregunta;
-    return View("Sala2");
-}
     public IActionResult Sala3(){
-        return View();
+        if (HttpContext.Session.GetString("EstadoSala2") != true.ToString()){
+            return RedirectToAction("Sala2");
+        }
+        else{
+            return View();
+        }
     }
     public IActionResult Sala4(){
         return View();
