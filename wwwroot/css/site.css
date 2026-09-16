@@ -536,3 +536,10 @@ body {
 .sala4-mensaje--derrota {
   color: #f07160;
 }
+
+#portada{
+  display: block;
+  width: 75%;
+  max-width: 100%;
+  margin: 0 auto;
+}
