@@ -63,8 +63,8 @@ public class JuegoController : Controller
     [HttpPost]
     public IActionResult ResponderSala1(string respuesta){ 
         if (respuesta == "5675"){
-            return RedirectToAction("Sala2");
             HttpContext.Session.SetString("EstadoSala1", true.ToString());
+            return RedirectToAction("Sala2");
         }
         else{
             ViewBag.Error = "El código no es correcto. Intentá nuevamente.";
@@ -85,8 +85,8 @@ public class JuegoController : Controller
         if (respuesta == respuestasCorrectas[pregunta]){
             pregunta++;
             if (pregunta > 5){
-                return View("Sala3");
                 HttpContext.Session.SetString("EstadoSala2", true.ToString());
+                return View("Sala3");
             }
         }
         else if (respuesta != "")
