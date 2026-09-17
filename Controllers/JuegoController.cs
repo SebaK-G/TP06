@@ -75,26 +75,19 @@ public class JuegoController : Controller
         ViewBag.Personaje = personaje;
         return View("Sala1");
     }
-    public IActionResult Sala2(int pregunta = 1, string respuesta = ""){
+    public IActionResult Sala2(){
         if (HttpContext.Session.GetString("EstadoSala1") != true.ToString()){
             return RedirectToAction("Sala1");
         }
-
-
-        string[] respuestasCorrectas = { "", "Mente", "Edimburgo", "Corvus Glaive", "Integrada", "Separar" };
-        if (respuesta == respuestasCorrectas[pregunta]){
-            pregunta++;
-            if (pregunta > 5){
-                HttpContext.Session.SetString("EstadoSala2", true.ToString());
-                return View("Sala3");
-            }
+        return View();
+    }
+    [HttpPost]
+    public IActionResult CompletarSala2(){
+        if (HttpContext.Session.GetString("EstadoSala1") != true.ToString()){
+            return RedirectToAction("Sala1");
         }
-        else if (respuesta != "")
-        {
-            ViewBag.Error = "¡Respuesta incorrecta! Volvé a intentarlo.";
-        }
-        ViewBag.PreguntaActual = pregunta;
-        return View("Sala2");
+        HttpContext.Session.SetString("EstadoSala2", true.ToString());
+        return RedirectToAction("Sala3");
     }
     public IActionResult Sala3(){
         if (HttpContext.Session.GetString("EstadoSala2") != true.ToString()){

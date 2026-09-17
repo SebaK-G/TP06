@@ -1,107 +1,85 @@
 @{
-    ViewData["Title"] = "Sala 2 - Batalla de Wakanda";
-
-    int pregunta = 1;
-    if (ViewBag.PreguntaActual != null){
-        pregunta = ViewBag.PreguntaActual;
-    }
+    ViewData["Title"] = "Sala 2 - El Laberinto de Wakanda";
 }
 
 <div class="room-page">
     <div class="room-page__content">
         <p class="game-menu__eyebrow">Sala 02 · Wakanda</p>
-        <h1 class="room-page__title">Proteger a Visión</h1>
-        <p class="room-page__text">La batalla comenzó. Ayudá a Wanda a proteger a Visión respondiendo correctamente las preguntas.</p>
+        <h1 class="room-page__title">Escapar del Laberinto</h1>
+        <p class="room-page__text">Shuri necesita tu ayuda. Escapá del laberinto de Wakanda usando W, A, S, D. Encuentra la salida verde.</p>
 
-        <img class="scene-card__image" src="/Imagenes/Proteger.png" alt="Proteger a Vision" />
 
-        @if (ViewBag.Error != null){
-            <p class="game-form__error">@ViewBag.Error</p>
-        }
 
         <div class="scene-card">
-            @switch (pregunta)
-            {
-                case 1:
-                    <div class="question-card" id="1">
-                        <h2>Pregunta 1</h2>
-                        <p>¿Qué Gema del Infinito se encuentra en la frente de Visión?</p>
-                        <form method="post" action="/Juego/Sala2">
-                            <input type="hidden" name="pregunta" value="1" />
-                            <div class="scene-card__actions game-menu__actions">
-                                <button type="submit" name="respuesta" value="Poder" class="game-button game-button--secondary">Gema del Poder</button>
-                                <button type="submit" name="respuesta" value="Mente" class="game-button game-button--secondary">Gema de la Mente</button>
-                                <button type="submit" name="respuesta" value="Tiempo" class="game-button game-button--secondary">Gema del Tiempo</button>
-                                <button type="submit" name="respuesta" value="Espacio" class="game-button game-button--secondary">Gema del Espacio</button>
-                            </div>
-                        </form>
-                    </div>
-                    break;
+            <div class="maze-container">
+                <canvas id="mazeCanvas" width="600" height="600" class="maze-canvas"></canvas>
+                <div id="mazeStatus" class="maze-status" style="display: none;">
+                    <p class="maze-mensaje">¡Escapaste del laberinto! 🎉</p>
+                </div>
+            </div>
 
-                case 2:
-                    <div class="question-card" id="2">
-                        <h2>Pregunta 2</h2>
-                        <p>¿Dónde se encontraba Vision al comienzo de Infinity War cuando es atacado por la Orden Negra?</p>
-                        <form method="post" action="/Juego/Sala2">
-                            <input type="hidden" name="pregunta" value="2" />
-                            <div class="scene-card__actions game-menu__actions">
-                                <button type="submit" name="respuesta" value="Wakanda" class="game-button game-button--secondary">Wakanda</button>
-                                <button type="submit" name="respuesta" value="Nueva York" class="game-button game-button--secondary">Nueva York</button>
-                                <button type="submit" name="respuesta" value="Sokovia" class="game-button game-button--secondary">Sokovia</button>
-                                <button type="submit" name="respuesta" value="Edimburgo" class="game-button game-button--secondary">Edimburgo</button>
-                            </div>
-                        </form>
-                    </div>
-                    break;
+            <p id="mazeMessage" class="maze-message" style="display: none;">
+                ¡Escapaste del laberinto!
+            </p>
 
-                case 3:
-                    <div class="question-card" id="3">
-                        <h2>Pregunta 3</h2>
-                        <p>¿Qué personaje logra herir gravemente a Vision con un arma capaz de atravesar su cuerpo?</p>
-                        <form method="post" action="/Juego/Sala2">
-                            <input type="hidden" name="pregunta" value="3" />
-                            <div class="scene-card__actions game-menu__actions">
-                                <button type="submit" name="respuesta" value="Corvus Glaive" class="game-button game-button--secondary">Corvus Glaive</button>
-                                <button type="submit" name="respuesta" value="Proxima Midnight" class="game-button game-button--secondary">Proxima Midnight</button>
-                                <button type="submit" name="respuesta" value="Ebony Maw" class="game-button game-button--secondary">Ebony Maw</button>
-                                <button type="submit" name="respuesta" value="Cull Obsidian" class="game-button game-button--secondary">Cull Obsidian</button>
-                            </div>
-                        </form>
-                    </div>
-                    break;
+            <div class="game-menu__actions">
+                <p class="maze-controls__text">Usa <strong>W, A, S, D</strong> para moverte</p>
+            </div>
 
-                case 4:
-                    <div class="question-card" id="4">
-                        <h2>Pregunta 4</h2>
-                        <p>¿Por qué Vision no puede simplemente quitarse la Gema de la Mente de la frente?</p>
-                        <form method="post" action="/Juego/Sala2">
-                            <input type="hidden" name="pregunta" value="4" />
-                            <div class="scene-card__actions game-menu__actions">
-                                <button type="submit" name="respuesta" value="Integrada" class="game-button game-button--secondary">Porque la Gema está integrada a su funcionamiento</button>
-                                <button type="submit" name="respuesta" value="Hechizo" class="game-button game-button--secondary">Porque está protegida por un hechizo</button>
-                                <button type="submit" name="respuesta" value="Controlada" class="game-button game-button--secondary">Porque Thanos la controla a distancia</button>
-                                <button type="submit" name="respuesta" value="Fusionada" class="game-button game-button--secondary">Porque está fusionada con su traje</button>
-                            </div>
-                        </form>
-                    </div>
-                    break;
-
-                case 5:
-                    <div class="question-card" id="5">
-                        <h2>Pregunta 5</h2>
-                        <p>¿Qué propone Shuri para intentar salvar a Vision?</p>
-                        <form method="post" action="/Juego/Sala2">
-                            <input type="hidden" name="pregunta" value="5" />
-                            <div class="scene-card__actions game-menu__actions">
-                                <button type="submit" name="respuesta" value="Transferir" class="game-button game-button--secondary">Transferir la Gema a Bruce Banner</button>
-                                <button type="submit" name="respuesta" value="Separar" class="game-button game-button--secondary">Separar la Gema de la Mente de Vision sin destruir su personalidad</button>
-                                <button type="submit" name="respuesta" value="Esconder" class="game-button game-button--secondary">Esconder la Gema en Wakanda</button>
-                                <button type="submit" name="respuesta" value="Destruir" class="game-button game-button--secondary">Destruir el cuerpo de Vision y reconstruirlo</button>
-                            </div>
-                        </form>
-                    </div>
-                    break;
-            }
+            <form id="laberintoForm" method="post" action="/Juego/CompletarSala2" style="display: none;">
+                <button type="submit"></button>
+            </form>
         </div>
     </div>
 </div>
+
+<style>
+    .maze-container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        margin: 1.5rem auto;
+        max-width: 650px;
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        padding: 1rem;
+        border-radius: 8px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .maze-canvas {
+        display: block;
+        border: 2px solid #00d4ff;
+        border-radius: 4px;
+        background: #0f1419;
+        cursor: none;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .maze-status {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(0, 212, 255, 0.95);
+        padding: 2rem 3rem;
+        border-radius: 8px;
+        text-align: center;
+        z-index: 10;
+        box-shadow: 0 8px 32px rgba(0, 212, 255, 0.4);
+    }
+
+    .maze-status__text {
+        margin: 0;
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #0f1419;
+    }
+
+    .maze-controls__text {
+        margin: 0.5rem 0 0 0;
+        font-size: 0.95rem;
+        color: #a0a0a0;
+        text-align: center;
+    }
+</style>
