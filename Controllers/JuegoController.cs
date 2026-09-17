@@ -104,13 +104,32 @@ public class JuegoController : Controller
             return View();
         }
     }
+    public IActionResult CompletarSala3(){
+        HttpContext.Session.SetString("EstadoSala3", true.ToString());
+        return RedirectToAction("Sala4");
+    }  
     public IActionResult Sala4(){
-        return View();
+        if (HttpContext.Session.GetString("EstadoSala3") != true.ToString()){
+            return RedirectToAction("Sala3");
+        }
+        else{
+            return View();
+        }
     }
+    public IActionResult CompletarSala4(){
+        HttpContext.Session.SetString("EstadoSala4", true.ToString());
+        return RedirectToAction("Final");
+    }  
     public IActionResult Final(){
-        ViewBag.Nombre = HttpContext.Session.GetString("NombreJugador");
-        ViewBag.TiempoPartida = bd.CalcularTiempoPartida(ViewBag.Nombre);
-        return View();
+        if (HttpContext.Session.GetString("EstadoSala4") != true.ToString()){
+            return RedirectToAction("Sala4");
+        }
+        else{
+            ViewBag.Nombre = HttpContext.Session.GetString("NombreJugador");
+            ViewBag.TiempoPartida = bd.CalcularTiempoPartida(ViewBag.Nombre);
+            HttpContext.Session.Clear();
+            return View();
+        }
     }
 
 

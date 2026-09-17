@@ -34,8 +34,11 @@
                     No llegaste a tiempo. Intentá de nuevo.
                 </div>
 
+
                 <div class="game-menu__actions">
-                    <a href="/Juego/Final" id="btnContinuar" class="game-button game-button--primary" style="display: none;">Continuar <span aria-hidden="true">→</span></a>
+                    <form action="@Url.Action("CompletarSala4", "Juego")" method="post">
+                        <button type="submit" id="btnContinuar" class="game-button game-button--primary" style="display: none;">Continuar <span aria-hidden="true">→</span></button>
+                    </form>
                 </div>
             </div>
         </div>
