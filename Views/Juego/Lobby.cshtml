@@ -1,0 +1,37 @@
+@{
+    ViewData["Title"] = "Lobby";
+    var salaRetorno = ViewBag.SalaRetorno ?? "Sala1";
+}
+
+<div class="game-menu">
+    <div class="game-menu__content">
+        <p class="game-menu__eyebrow">Lobby</p>
+        <h1>Continuar partida</h1>
+        <p class="game-menu__lead">Jugador: <strong>@ViewBag.NombreJugador</strong></p>
+
+        <div class="game-menu__actions">
+            @if (salaRetorno == "Sala1")
+            {
+                <a class="game-button game-button--primary" asp-controller="Juego" asp-action="Sala1">Continuar desde Sala 1</a>
+            }
+            else if (salaRetorno == "Sala2")
+            {
+                <a class="game-button game-button--primary" asp-controller="Juego" asp-action="Sala2">Continuar desde Sala 2</a>
+            }
+            else if (salaRetorno == "Sala3")
+            {
+                <a class="game-button game-button--primary" asp-controller="Juego" asp-action="Sala3">Continuar desde Sala 3</a>
+            }
+            else if (salaRetorno == "Sala4")
+            {
+                <a class="game-button game-button--primary" asp-controller="Juego" asp-action="Sala4">Continuar desde Sala 4</a>
+            }
+            else
+            {
+                <a class="game-button game-button--primary" asp-controller="Juego" asp-action="Sala1">Continuar desde Sala 1</a>
+            }
+
+            <a class="game-button game-button--secondary" asp-controller="Juego" asp-action="Index">Volver al inicio</a>
+        </div>
+    </div>
+</div>

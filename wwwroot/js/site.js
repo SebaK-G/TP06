@@ -150,19 +150,31 @@ const exitY = 13;
 let keys = {};
 let mazecompleted = false;
 
-// Event listeners de teclado
-document.addEventListener('keydown', (e) => {
-    if (['w', 'a', 's', 'd'].includes(e.key.toLowerCase())) {
-        keys[e.key.toLowerCase()] = true;
-        e.preventDefault();
-    }
-}, false);
+function bindMazeControls() {
+    if (document.body.dataset.mazeControlsBound === 'true') return;
 
-document.addEventListener('keyup', (e) => {
-    if (['w', 'a', 's', 'd'].includes(e.key.toLowerCase())) {
-        keys[e.key.toLowerCase()] = false;
-    }
-}, false);
+    document.body.dataset.mazeControlsBound = 'true';
+
+    document.addEventListener('keydown', (e) => {
+        if (['w', 'a', 's', 'd'].includes(e.key.toLowerCase())) {
+            keys[e.key.toLowerCase()] = true;
+            e.preventDefault();
+        }
+    }, false);
+
+    document.addEventListener('keyup', (e) => {
+        if (['w', 'a', 's', 'd'].includes(e.key.toLowerCase())) {
+            keys[e.key.toLowerCase()] = false;
+        }
+    }, false);
+}
+
+function unbindMazeControls() {
+    document.body.dataset.mazeControlsBound = 'false';
+    ['w', 'a', 's', 'd'].forEach((key) => {
+        keys[key] = false;
+    });
+}
 
 function isWall(x, y) {
     const gridX = Math.floor(x / TILE_SIZE);
@@ -242,6 +254,7 @@ function drawMaze() {
 
 function completeMaze() {
     mazecompleted = true;
+    unbindMazeControls();
     const statusEl = document.getElementById('mazeStatus');
     if (statusEl) statusEl.style.display = 'block';
     setTimeout(() => {
@@ -262,6 +275,7 @@ function mazeGameLoop() {
 setTimeout(() => {
     mazeCanvas = document.getElementById('mazeCanvas');
     if (mazeCanvas) {
+        bindMazeControls();
         mazeCtx = mazeCanvas.getContext('2d');
         mazeGameLoop();
     }

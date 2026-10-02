@@ -43,6 +43,11 @@
             <button class="game-button game-button--primary" type="submit">Enviar <span aria-hidden="true">→</span></button>
         </form>
 
+        <form method="post" action="/Juego/SalirSala" style="margin-top: 1rem;">
+            <input type="hidden" name="sala" value="Sala1" />
+            <button class="game-button game-button--secondary" type="submit">Salir al lobby</button>
+        </form>
+
         @if (ViewBag.Error != null)
         {
             <p class="game-form__error">@ViewBag.Error</p>

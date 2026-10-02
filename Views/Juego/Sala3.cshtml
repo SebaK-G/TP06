@@ -31,6 +31,11 @@
 
         <form id="formViaje" action="@Url.Action("CompletarSala3", "Juego")" method="post">
         </form>
+
+        <form method="post" action="/Juego/SalirSala" style="margin-top: 1.5rem; text-align: center;">
+            <input type="hidden" name="sala" value="Sala3" />
+            <button type="submit" class="game-button game-button--secondary">Salir al lobby</button>
+        </form>
     </div>
 </div>
 
