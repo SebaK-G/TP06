@@ -88,11 +88,6 @@ public class JuegoController : Controller
         return View();
     }
     public IActionResult Iniciar(){
-        string ultimoNombre = HttpContext.Session.GetString("UltimoNombreJugador");
-        if (!string.IsNullOrWhiteSpace(ultimoNombre))
-        {
-            ViewBag.NombreIngresado = ultimoNombre;
-        }
         return View();
     }
     [HttpPost]
@@ -117,15 +112,6 @@ public class JuegoController : Controller
             return View();
         }
 
-        HttpContext.Session.SetString("UltimoNombreJugador", nombre);
-
-        Partidas partidaExistente = bd.ObtenerPartidaPorNombre(nombre);
-        if (partidaExistente != null){
-            HttpContext.Session.SetString("NombreJugador", nombre);
-            CargarEstadoDesdeBD();
-            return RedirigirUltimaSalaGuardada();
-        }
-
         bd.CrearPartida(new Partidas { NombreParticipante = nombre });
         HttpContext.Session.SetString("NombreJugador", nombre);
         CargarEstadoDesdeBD();
@@ -133,31 +119,12 @@ public class JuegoController : Controller
     }
 
     public IActionResult Comenzar(){
-        string ultimoNombre = HttpContext.Session.GetString("UltimoNombreJugador");
-        if (!string.IsNullOrWhiteSpace(ultimoNombre))
-        {
-            return RedirectToAction("NuevaPartida");
-        }
-
         return RedirectToAction("Iniciar");
     }
 
     public IActionResult NuevaPartida(){
-        string nombre = HttpContext.Session.GetString("UltimoNombreJugador") ?? HttpContext.Session.GetString("NombreJugador");
-
-        if (string.IsNullOrWhiteSpace(nombre)){
-            return RedirectToAction("Iniciar");
-        }
-
-        Partidas partida = bd.ObtenerPartidaPorNombre(nombre);
-        if (partida != null){
-            bd.ReiniciarPartida(partida.Id);
-        }
-
         HttpContext.Session.Clear();
-        HttpContext.Session.SetString("NombreJugador", nombre);
-        HttpContext.Session.SetString("UltimoNombreJugador", nombre);
-        return RedirectToAction("Sala1");
+        return RedirectToAction("Iniciar");
     }
 
     public IActionResult Sala1(){
@@ -283,9 +250,14 @@ public class JuegoController : Controller
             string nombre = HttpContext.Session.GetString("NombreJugador");
             ViewBag.Nombre = nombre;
             ViewBag.TiempoPartida = bd.CalcularTiempoPartida(nombre);
-            HttpContext.Session.SetString("UltimoNombreJugador", nombre);
+
+            Partidas partida = bd.ObtenerPartidaPorNombre(nombre);
+            if (partida != null)
+            {
+                bd.ReiniciarPartida(partida.Id);
+            }
+
             HttpContext.Session.Clear();
-            HttpContext.Session.SetString("UltimoNombreJugador", nombre);
             return View();
         }
     }
